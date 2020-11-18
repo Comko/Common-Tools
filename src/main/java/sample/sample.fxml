@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.collections.FXCollections?>
+
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.Controller">
+    <children>
+        <MenuBar VBox.vgrow="NEVER">
+            <menus>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#about" text="About " />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+      <HBox prefHeight="165.0" prefWidth="240.0" />
+        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="500.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
+            <children>
+                <TabPane prefHeight="195.0" prefWidth="640.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                        <Tab text="Java Jasypt">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="171.0" prefWidth="337.0">
+                                    <children>
+                                        <TextField fx:id="jasyptInput" layoutX="52.0" layoutY="58.0" prefHeight="23.0" prefWidth="390.0" />
+                                        <TextField fx:id="jasyptSalt" layoutX="52.0" layoutY="28.0" prefHeight="23.0" prefWidth="390.0" />
+                                        <Label layoutX="14.0" layoutY="32.0" prefHeight="15.0" prefWidth="75.0" text="Salt" />
+                                        <Label layoutX="33.0" layoutY="205.0" prefHeight="15.0" prefWidth="75.0" text="History" />
+                                        <Label layoutX="14.0" layoutY="62.0" prefHeight="15.0" prefWidth="75.0" text="Input" />
+                                        <Label layoutX="15.0" layoutY="94.0" prefHeight="15.0" prefWidth="75.0" text="Result" />
+                                        <TextArea fx:id="jasyptResult" layoutX="53.0" layoutY="94.0" prefHeight="62.0" prefWidth="572.0" />
+                              <Button layoutX="460.0" layoutY="28.0" mnemonicParsing="false" onAction="#jasypt32BitSaltRandom" prefHeight="23.0" prefWidth="75.0" text="32Bit Salt" />
+                              <Button layoutX="551.0" layoutY="28.0" mnemonicParsing="false" onAction="#jasypt64BitSaltRandom" prefHeight="23.0" prefWidth="75.0" text="64Bit Salt" />
+                              <Button layoutX="460.0" layoutY="58.0" mnemonicParsing="false" onAction="#jasyptEncrypt" prefHeight="23.0" prefWidth="75.0" text="Encrypt" />
+                              <Button layoutX="551.0" layoutY="58.0" mnemonicParsing="false" onAction="#jasyptDecrypt" prefHeight="23.0" prefWidth="75.0" text="Decrypt" />
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Base64">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="640.0">
+                           <children>
+                              <TextArea fx:id="base64Original" layoutX="14.0" layoutY="28.0" prefHeight="128.0" prefWidth="225.0" />
+                              <TextArea fx:id="base64Result" layoutX="401.0" layoutY="28.0" prefHeight="128.0" prefWidth="225.0" />
+                              <Button layoutX="273.0" layoutY="43.0" mnemonicParsing="false" onAction="#base64Encrypt" prefHeight="23.0" prefWidth="94.0" text="Encode ➡" />
+                              <Button layoutX="273.0" layoutY="72.0" mnemonicParsing="false" onAction="#base64Decrypt" prefHeight="23.0" prefWidth="94.0" text="⬅ Decode" />
+                              <Label layoutX="13.0" layoutY="7.0" prefHeight="15.0" prefWidth="226.0" text="Encode Input/Decode Result" />
+                              <Label layoutX="401.0" layoutY="7.0" prefHeight="15.0" prefWidth="226.0" text="Encode Result/Decode Input" />
+                              <Button layoutX="272.0" layoutY="129.0" mnemonicParsing="false" onAction="#base64Change" prefHeight="23.0" prefWidth="96.0" text="⬅ Change ➡" />
+                           </children></AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab text="MD5">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="640.0" />
+                            </content>
+                        </Tab>
+                        <Tab text="AES">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="640.0" />
+                            </content>
+                        </Tab>
+                        <Tab text="DES">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="640.0" />
+                            </content>
+                        </Tab>
+                        <Tab text="Regular check">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="640.0">
+                           <children>
+                              <Label layoutX="23.0" layoutY="14.0" text="Regular expression" />
+                              <Label layoutX="23.0" layoutY="107.0" prefHeight="15.0" prefWidth="104.0" text="Check Result" />
+                              <Text fx:id="regularResult" layoutX="150.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                              <Button layoutX="562.0" layoutY="103.0" mnemonicParsing="false" onAction="#regularCheck" text="Check" />
+                              <TextField fx:id="regularExpression" layoutX="150.0" layoutY="10.0" prefHeight="23.0" prefWidth="467.0" />
+                              <TextField fx:id="regularInput" layoutX="150.0" layoutY="48.0" prefHeight="23.0" prefWidth="467.0" />
+                              <Label layoutX="23.0" layoutY="52.0" text="Input" />
+                           </children></AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Uuid">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="640.0" />
+                            </content>
+                        </Tab>
+                        <Tab text="SnowFlake">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="640.0" />
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+                <Separator layoutX="7.0" layoutY="199.0" prefHeight="15.0" prefWidth="615.0" />
+                <AnchorPane layoutX="14.0" layoutY="215.0" prefHeight="262.0" prefWidth="615.0">
+                    <children>
+                        <TextArea fx:id="history" editable="false" layoutX="7.0" layoutY="24.0" prefHeight="227.0" prefWidth="603.0" />
+                        <Button layoutX="530.0" layoutY="-4.0" mnemonicParsing="false" onAction="#cleanHistory" prefHeight="23.0" prefWidth="75.0" text="Clean" />
+                        <Label layoutX="7.0" prefHeight="15.0" prefWidth="75.0" text="History" />
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+    </children>
+</VBox>
