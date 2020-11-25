@@ -61,19 +61,19 @@
                            </children></AnchorPane>
                             </content>
                         </Tab>
-                        <Tab text="MD5">
-                            <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="640.0" />
-                            </content>
-                        </Tab>
                         <Tab text="AES">
                             <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="640.0" />
-                            </content>
-                        </Tab>
-                        <Tab text="DES">
-                            <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="640.0" />
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="640.0">
+                           <children>
+                              <Button layoutX="468.0" layoutY="44.0" mnemonicParsing="false" onAction="#aesEncrypt" prefHeight="110.0" prefWidth="75.0" text="Encrypt" />
+                              <Button layoutX="552.0" layoutY="44.0" mnemonicParsing="false" onAction="#aesDecrypt" prefHeight="110.0" prefWidth="75.0" text="Decrypt" />
+                              <Label layoutX="14.0" layoutY="12.0" text="Key" />
+                              <Label layoutX="14.0" layoutY="44.0" prefHeight="15.0" prefWidth="40.0" text="Input" />
+                              <Label layoutX="14.0" layoutY="108.0" text="Result" />
+                              <TextField fx:id="aesKey" layoutX="69.0" layoutY="8.0" prefHeight="23.0" prefWidth="384.0" />
+                              <TextArea fx:id="aesInput" layoutX="69.0" layoutY="44.0" prefHeight="45.0" prefWidth="386.0" />
+                              <TextArea fx:id="aesResult" layoutX="69.0" layoutY="106.0" prefHeight="45.0" prefWidth="386.0" />
+                           </children></AnchorPane>
                             </content>
                         </Tab>
                         <Tab text="Regular check">
@@ -90,16 +90,41 @@
                            </children></AnchorPane>
                             </content>
                         </Tab>
-                        <Tab text="Uuid">
-                            <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="640.0" />
-                            </content>
-                        </Tab>
-                        <Tab text="SnowFlake">
-                            <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="640.0" />
-                            </content>
-                        </Tab>
+                  <Tab text="Json Viewer">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TextArea fx:id="jsonView" layoutX="14.0" layoutY="14.0" prefHeight="146.0" prefWidth="520.0" />
+                              <Button layoutX="551.0" layoutY="111.0" mnemonicParsing="false" onAction="#jsonView" prefHeight="49.0" prefWidth="75.0" text="Format" />
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab text="Time">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Label layoutX="14.0" layoutY="42.0" prefHeight="15.0" prefWidth="75.0" text="Timestamp" />
+                              <Label layoutX="14.0" layoutY="76.0" prefHeight="15.0" prefWidth="75.0" text="Time" />
+                              <TextField fx:id="timestampInput" layoutX="97.0" layoutY="38.0" />
+                              <TextField fx:id="timeInput" layoutX="97.0" layoutY="72.0" />
+                              <TextField fx:id="timestampResult" layoutX="387.0" layoutY="38.0" />
+                              <TextField fx:id="timeResult" layoutX="387.0" layoutY="72.0" />
+                              <Label layoutX="258.0" layoutY="42.0" text="ms" />
+                              <Label layoutX="548.0" layoutY="76.0" text="ms" />
+                              <Button layoutX="293.0" layoutY="38.0" mnemonicParsing="false" onAction="#timestampTransfer" text="transform" />
+                              <Button layoutX="293.0" layoutY="72.0" mnemonicParsing="false" onAction="#timesTransfer" text="transform" />
+                              <Label layoutX="14.0" layoutY="113.0" text="Time Format : " />
+                              <Text fx:id="timeEg" layoutX="97.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2020-11-20 17:19:24" wrappingWidth="168.0" />
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab text="Unicode">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                  </Tab>
                     </tabs>
                 </TabPane>
                 <Separator layoutX="7.0" layoutY="199.0" prefHeight="15.0" prefWidth="615.0" />

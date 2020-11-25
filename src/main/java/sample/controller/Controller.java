@@ -9,15 +9,18 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import org.apache.commons.lang3.StringUtils;
+import sample.utils.AESUtils;
 import sample.utils.Base64Utils;
 import sample.utils.JasyptUtils;
+import sample.utils.JsonViewUtils;
+import sample.utils.TimeUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Controller {
@@ -47,6 +50,32 @@ public class Controller {
 
     @FXML
     private Text regularResult;
+
+    @FXML
+    private TextField aesKey;
+
+    @FXML
+    private TextArea aesInput;
+
+    @FXML
+    private TextArea aesResult;
+
+    @FXML
+    private TextArea jsonView;
+
+    @FXML
+    private TextField timestampInput;
+
+    @FXML
+    private TextField timestampResult;
+
+    @FXML
+    private TextField timeInput;
+
+    @FXML
+    private TextField timeResult;
+
+    private String lastJsonValue;
 
     public void jasyptEncrypt() {
 
@@ -212,6 +241,123 @@ public class Controller {
         history.setText(returnHistoryValue(historyList));
     }
 
+    public void aesEncrypt() {
+        List<String> historyList = new ArrayList<String>();
+        if (StringUtils.isNotEmpty(history.getText())) {
+            historyList = new ArrayList<String>(Arrays.asList(history.getText().split("\n")));
+        }
+        historyList.add("------------------------AES Encrypt--------------------------");
+        String key = aesKey.getText();
+        if (StringUtils.isEmpty(key)) {
+            historyList.add("AES key is Blank");
+            history.setText(returnHistoryValue(historyList));
+            return;
+        }
+        String input = aesInput.getText();
+        try {
+            String outPut = AESUtils.encrypt(input, key);
+            historyList.add("Encrypt");
+            historyList.add("Key: " + key);
+            historyList.add("Input: " + input);
+            historyList.add("Result: " + outPut);
+            aesResult.setText(outPut);
+        } catch (Exception e) {
+            aesResult.setText("Encrypt error");
+            historyList.add("Encrypt error");
+        }
+        history.setText(returnHistoryValue(historyList));
+    }
+
+    public void aesDecrypt() {
+        List<String> historyList = new ArrayList<String>();
+        if (StringUtils.isNotEmpty(history.getText())) {
+            historyList = new ArrayList<String>(Arrays.asList(history.getText().split("\n")));
+        }
+        historyList.add("------------------------AES Decrypt--------------------------");
+        String key = aesKey.getText();
+        if (StringUtils.isEmpty(key)) {
+            historyList.add("AES key is Blank");
+            history.setText(returnHistoryValue(historyList));
+            return;
+        }
+        String input = aesInput.getText();
+        try {
+            String outPut = AESUtils.decrypt(input, key);
+            historyList.add("Decrypt");
+            historyList.add("Key: " + key);
+            historyList.add("Input: " + input);
+            historyList.add("Result: " + outPut);
+            aesResult.setText(outPut);
+        } catch (Exception e) {
+            aesResult.setText("Decrypt error");
+            historyList.add("Decrypt error");
+        }
+        history.setText(returnHistoryValue(historyList));
+    }
+
+    public void jsonView() {
+        List<String> historyList = new ArrayList<String>();
+        if (StringUtils.isNotEmpty(history.getText())) {
+            historyList = new ArrayList<String>(Arrays.asList(history.getText().split("\n")));
+        }
+        historyList.add("------------------------Json View--------------------------");
+        String value = jsonView.getText();
+        try {
+            historyList.add("Json View");
+            if (StringUtils.isNotEmpty(value) && !value.equals(lastJsonValue)) {
+                String result = JsonViewUtils.formatJson(value);
+                historyList.add("Result: " + result);
+                jsonView.setText(result);
+                lastJsonValue = result;
+            } else {
+                historyList.add("Result: " + value);
+                jsonView.setText(value);
+            }
+        } catch (Exception e) {
+            jsonView.setText(value);
+            historyList.add("Json view error");
+        }
+        history.setText(returnHistoryValue(historyList));
+    }
+
+    public void timestampTransfer() {
+        List<String> historyList = new ArrayList<String>();
+        if (StringUtils.isNotEmpty(history.getText())) {
+            historyList = new ArrayList<String>(Arrays.asList(history.getText().split("\n")));
+        }
+        historyList.add("------------------------Time--------------------------");
+        try {
+            String input = timestampInput.getText();
+            String result = TimeUtils.stampToTime(input);
+            timestampResult.setText(result);
+            historyList.add("Stamp to Date");
+            historyList.add("Stamp: " + input);
+            historyList.add("Date: " + result);
+        } catch (Exception e) {
+            historyList.add("stamp to date error");
+        }
+        history.setText(returnHistoryValue(historyList));
+    }
+
+    public void timesTransfer() {
+        List<String> historyList = new ArrayList<String>();
+        if (StringUtils.isNotEmpty(history.getText())) {
+            historyList = new ArrayList<String>(Arrays.asList(history.getText().split("\n")));
+        }
+        historyList.add("------------------------Time--------------------------");
+        try {
+            String input = timeInput.getText();
+            String result = TimeUtils.dateToStamp(input);
+            timeResult.setText(result);
+            historyList.add("Date to Stamp");
+            historyList.add("Date: " + input);
+            historyList.add("Stamp: " + result);
+        } catch (Exception e) {
+            historyList.add("date to stamp error");
+        }
+        history.setText(returnHistoryValue(historyList));
+    }
+
     public String returnHistoryValue (List<String> historyList) {
         String historyValue = "";
         int maxLen = 100;
@@ -245,7 +391,11 @@ public class Controller {
         about.setHeaderText("Common Tools V1.1");
         about.setContentText("V1.1" + "\n" + "1:Change jasypt view;"
                 + "\n" + "2:Add Base64;"
-                + "\n" + "3:Add Regular check;");
+                + "\n" + "3:Add Regular check;"
+
+        + "\n" + "V1.2" + "\n" + "1:Add AES;"
+                + "\n" + "2:Add Json viewer;"
+                + "\n" + "3:Add Time;");
         about.show();
     }
 }

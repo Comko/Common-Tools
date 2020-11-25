@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exe4j version="7.0" transformSequenceNumber="3">
+  <directoryPresets config="D:/G42/dev-code/ComkoTools/target" />
+  <application name="CommonTools V1.2" distributionSourceDir="D:/G42/dev-code/ComkoTools/target" />
+  <executable name="Common Tools V1.2" wrapperType="embed" iconSet="true" iconFile="D:/favicon.ico" redirectStderr="false" executableMode="gui" singleInstance="true">
+    <versionInfo fileVersion="1.0" productVersion="1.0" />
+  </executable>
+  <java mainClass="sample.Main" preferredVM="client" minVersion="1.8" allowBetaVM="true">
+    <searchSequence>
+      <registry />
+      <envVar name="JAVA_HOME" />
+      <envVar name="JDK_HOME" />
+      <directory location="./jre" />
+    </searchSequence>
+    <classPath>
+      <archive location="D:/G42/dev-code/ComkoTools/target/ComkoTools-1.0-SNAPSHOT-jar-with-dependencies.jar" failOnError="false" />
+    </classPath>
+  </java>
+</exe4j>
