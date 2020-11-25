@@ -120,9 +120,17 @@
                         </AnchorPane>
                     </content>
                   </Tab>
-                  <Tab text="Unicode">
+                  <Tab text="URL encode/decode">
                     <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Label layoutX="32.0" layoutY="18.0" text="Input" />
+                              <Label layoutX="30.0" layoutY="65.0" text="Result" />
+                              <TextArea fx:id="urlInput" layoutX="77.0" layoutY="18.0" prefHeight="37.0" prefWidth="537.0" />
+                              <TextArea fx:id="urlResult" layoutX="77.0" layoutY="65.0" prefHeight="37.0" prefWidth="537.0" />
+                              <Button layoutX="77.0" layoutY="129.0" mnemonicParsing="false" text="Encode" onAction="#urlEncode" />
+                              <Button layoutX="164.0" layoutY="129.0" mnemonicParsing="false" text="Decode" onAction="#urlDecode"/>
+                           </children></AnchorPane>
                     </content>
                   </Tab>
                     </tabs>

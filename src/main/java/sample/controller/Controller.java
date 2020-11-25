@@ -14,10 +14,10 @@ import sample.utils.Base64Utils;
 import sample.utils.JasyptUtils;
 import sample.utils.JsonViewUtils;
 import sample.utils.TimeUtils;
+import sample.utils.UrlUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
@@ -74,6 +74,12 @@ public class Controller {
 
     @FXML
     private TextField timeResult;
+
+    @FXML
+    private TextArea urlInput;
+
+    @FXML
+    private TextArea urlResult;
 
     private String lastJsonValue;
 
@@ -354,6 +360,44 @@ public class Controller {
             historyList.add("Stamp: " + result);
         } catch (Exception e) {
             historyList.add("date to stamp error");
+        }
+        history.setText(returnHistoryValue(historyList));
+    }
+
+    public void urlEncode() {
+        List<String> historyList = new ArrayList<String>();
+        if (StringUtils.isNotEmpty(history.getText())) {
+            historyList = new ArrayList<String>(Arrays.asList(history.getText().split("\n")));
+        }
+        historyList.add("------------------------URL encode/decode--------------------------");
+        try {
+            String input = urlInput.getText();
+            String result = UrlUtils.getURLEncoderString(input);
+            urlResult.setText(result);
+            historyList.add("URL encode");
+            historyList.add("Input: " + input);
+            historyList.add("Result: " + result);
+        } catch (Exception e) {
+            historyList.add("URL encode error");
+        }
+        history.setText(returnHistoryValue(historyList));
+    }
+
+    public void urlDecode() {
+        List<String> historyList = new ArrayList<String>();
+        if (StringUtils.isNotEmpty(history.getText())) {
+            historyList = new ArrayList<String>(Arrays.asList(history.getText().split("\n")));
+        }
+        historyList.add("------------------------URL encode/decode--------------------------");
+        try {
+            String input = urlInput.getText();
+            String result = UrlUtils.URLDecoderString(input);
+            urlResult.setText(result);
+            historyList.add("URL decode");
+            historyList.add("Input: " + input);
+            historyList.add("Result: " + result);
+        } catch (Exception e) {
+            historyList.add("URL decode error");
         }
         history.setText(returnHistoryValue(historyList));
     }
